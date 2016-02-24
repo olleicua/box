@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+var app = require('../lib/app.js');
+
+var cmd = process.argv[2];
+var args = process.argv.slice(3);
+
+for (command in app.commands) {
+  if (command.indexOf(cmd) === 0) {
+    return app.commands[command].apply(this, args);
+  }
+}
+
+app.commands.help();
