@@ -22,22 +22,49 @@ It uses the [Dropbox API](https://www.dropbox.com/developers/documentation/http/
 - List files in a directory
 
 ```
-documentation coming...
+$ box list path/to/directory/in/drobox
+(dir)      some_subdirectory
+124 B      some_small_file
+(dir)      another_subdirectory
+137.49 MB  larger_file
+```
+
+or if you don't specify a path it lists the top level files and directories
+
+```
+$ box list
+(dir)      some_subdirectory
+124 B      some_file
 ```
 
 - Download a file
 
 ```
-documentation coming...
+$ box download path/to/file/in/dropbox
+```
+
+you can also specify a destination path
+
+```
+$ box download path/to/file/in/dropbox path/to/destination/on/this/machine
 ```
 
 - Upload a file
 
 ```
-documentation coming...
+$ box upload path/to/file/on/this/machine path/to/destination/on/dropbox
 ```
 
-installatin and setup
+if the file already exists and hasn't changed since you last downloaded it via box it should overwrite
+if it has changed or something else goes wrong it should save in a new file with a name like your_file(conflicted)
+
+installation and setup
 ====
 
-documentation coming...
+npm installation coming...
+
+1. clone this repository `git clone https://github.com/olleicua/box.git`
+2. make the binary executable `chmod +x /path/to/repository/bin/box`
+3. copy or symlink `/path/to/repository/bin/box` to somewhere in your path (if you aren't sure what that means [this article](https://wiki.archlinux.org/index.php/environment_variables) might help (focus on the parts about the `$PATH` variable))
+4. find your dropbox API access token by logging into your dropbox account and then going here: https://dropbox.github.io/dropbox-api-v2-explorer/#files_get_metadata and then clicking the "Get Token" button.
+5. `box init YOUR_ACCESS_TOKEN`
